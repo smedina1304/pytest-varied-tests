@@ -78,7 +78,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 - Ativando o ambiente virtual **`"venv"`** no `Linux` ou `MAC`.
 
 ```shell
-source .venv/Scripts/activate
+source ./venv/Scripts/activate
 ```
 <br>
 
@@ -96,18 +96,16 @@ deactivate
 :exclamation: **ATENÇÃO:** Este comando deve ser usado apenas quando não for mais necessário a execução no ambiente virtual.
 
 <br>
+
+### Instalação dos pacotes necessários para este projeto.
+
+Todos os Pacotes _`Python`_ com a devida versão utilizada para este projeto estão listados no arquivo _`requirements.txt`_, e podem ser instalados utilizando o comando abaixo:
+
+```shell
+pip install -r requirements.txt
+```
+
 <br>
-
-
-
-
-
-
-
-
-
-
-
 
 ## Definições:
 
@@ -117,17 +115,6 @@ deactivate
 
 `Pytest` é um framework de testes de software para Python que facilita a escrita, execução e organização de testes unitários e de integração. Ele é conhecido por sua simplicidade, flexibilidade e robustez.
 
-### Setup of dependencies for the tests 
-
-```bash
-pip install requests
-```
-
-```bash
-pip install pytest
-```
-
-### Definition of the API that will be tested
 
 
 
