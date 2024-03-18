@@ -132,6 +132,15 @@ duration: 6.395397424697876 seconds
 ================================== 15 passed in 6.40s ==================================  
 ```
 
+- Link(s) de referência para criação e configuração dos testes
+
+https://dev.to/m4rri4nne/automating-your-api-tests-using-python-and-pytest-23cc
+https://semaphoreci.com/community/tutorials/testing-python-applications-with-pytest
+https://testdriven.io/blog/flask-pytest/ 
+https://pytest-selenium.readthedocs.io/en/latest/user_guide.html#quick-start
+
+
+
 <br>
 - Executa todos os cenários de teste com `verbose`.
 
@@ -185,13 +194,31 @@ pytest --html=./reports/report.html
 https://plainenglish.io/blog/create-your-customized-html-report-in-pytest-9c6b521b7e99
 
 <br>
+- Entrada de parametros via linha de comando.
 
-- Link(s) de referência para criação e configuração dos testes
+```shell
+pytest -q -s -v --name PARAM-NAME ./tests/classes/test_param.py
+```
 
-https://dev.to/m4rri4nne/automating-your-api-tests-using-python-and-pytest-23cc
-https://semaphoreci.com/community/tutorials/testing-python-applications-with-pytest
-https://testdriven.io/blog/flask-pytest/ 
-https://pytest-selenium.readthedocs.io/en/latest/user_guide.html#quick-start
+```shell
+======================================== test session starts ========================================
+platform win32 -- Python 3.9.6, pytest-8.1.1, pluggy-1.4.0
+rootdir: C:\Users\ych885\Sources\pytest-varied-tests      
+plugins: html-4.1.1, metadata-3.1.1
+collected 2 items
+
+tests\classes\test_param.py
+command line param (name): PARAM-NAME
+.test_print_name_2(name): PARAM-NAME
+.
+Status: {'passed': 2, 'failed': 0, 'xfailed': 0, 'skipped': 0}
+duration: 0.03297901153564453 seconds
+
+========================================= 2 passed in 0.03s ========================================= 
+
+```
+
+<br>
 
 
 ## Definições:

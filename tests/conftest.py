@@ -6,6 +6,11 @@ def pytest_html_report_title(report):
     ''' modifying the title of html report'''
     report.title = "NASA APIs - Asteroids."
 
+
+def pytest_addoption(parser):
+    parser.addoption("--name", action="store", default="default name")
+
+
 def pytest_html_results_summary(prefix, summary, postfix):
     prefix.extend([r"""<button onclick="myFunction()">Click Object-Prefix</button>
 
