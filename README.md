@@ -107,6 +107,93 @@ pip install -r requirements.txt
 
 <br>
 
+### Executando o Pytest para verificar o resultado dos testes.
+
+O _`Pytest`_ é um recurso executado via linha de comando, abaixo seguem alguns exemplos do uso.
+
+- Executa todos os cenários de teste.
+
+```shell
+pytest
+```
+
+```shell
+================================= test session starts ==================================
+platform win32 -- Python 3.9.6, pytest-8.1.1, pluggy-1.4.0
+rootdir: .\pytest-varied-tests      
+plugins: html-4.1.1, metadata-3.1.1
+collected 15 items
+
+tests\apis\test_nasa_apis_asteroids.py .......                                    [ 46%]
+tests\classes\test_wallet.py ........                                             [100%]
+Status: {'passed': 15, 'failed': 0, 'xfailed': 0, 'skipped': 0}
+duration: 6.395397424697876 seconds
+
+================================== 15 passed in 6.40s ==================================  
+```
+
+<br>
+- Executa todos os cenários de teste com `verbose`.
+
+```shell
+pytest -v
+```
+
+```shell
+========================================== test session starts ===========================================
+platform win32 -- Python 3.9.6, pytest-8.1.1, pluggy-1.4.0 -- .\pytest-varied-tests\venv\scripts\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.9.6', 'Platform': 'Windows-10-10.0.19045-SP0', 'Packages': 
+{'pytest': '8.1.1', 'pluggy': '1.4.0'}, 'Plugins': {'html': '4.1.1', 'metadata': '3.1.1'}, 
+'JAVA_HOME': 'C:\\Program Files\\Java\\jdk-11.0.12'}
+rootdir: .\pytest-varied-tests
+plugins: html-4.1.1, metadata-3.1.1
+collected 15 items
+
+tests/apis/test_nasa_apis_asteroids.py::test_search_asteroids_with_sucess PASSED                    [  6%]
+tests/apis/test_nasa_apis_asteroids.py::test_search_asteroids_with_query_parameters_empty PASSED    [ 13%]
+tests/apis/test_nasa_apis_asteroids.py::test_search_asteroids_with_start_date PASSED                [ 20%]
+tests/apis/test_nasa_apis_asteroids.py::test_search_asteroids_with_end_date PASSED                  [ 26%]
+tests/apis/test_nasa_apis_asteroids.py::test_search_asteroids_in_valid_range PASSED                 [ 33%]
+tests/apis/test_nasa_apis_asteroids.py::test_search_asteroids_in_invalid_range PASSED               [ 40%]
+tests/apis/test_nasa_apis_asteroids.py::test_search_asteroids_in_invalid_token PASSED               [ 46%]
+tests/classes/test_wallet.py::test_default_initial_amount PASSED                                    [ 53%] 
+tests/classes/test_wallet.py::test_setting_initial_amount PASSED                                    [ 60%] 
+tests/classes/test_wallet.py::test_wallet_add_cash PASSED                                           [ 66%] 
+tests/classes/test_wallet.py::test_wallet_spend_cash PASSED                                         [ 73%] 
+tests/classes/test_wallet.py::test_wallet_spend_cash_raises_exception_on_insufficient_amount PASSED [ 80%] 
+tests/classes/test_wallet.py::test_transactions[30-10-20] PASSED                                    [ 86%] 
+tests/classes/test_wallet.py::test_transactions[20-2-18] PASSED                                     [ 93%] 
+tests/classes/test_wallet.py::test_transactions[50-15-35] PASSED                                    [100%] 
+Status: {'passed': 15, 'failed': 0, 'xfailed': 0, 'skipped': 0}
+duration: 6.9229583740234375 seconds
+
+=========================================== 15 passed in 6.92s ===========================================
+```
+
+<br>
+- Gerando o relatório de análise dos testes 
+
+```shell
+pytest --html=./reports/report.html
+```
+
+<br>
+
+- Link(s) de referência para customização do report html
+
+https://plainenglish.io/blog/create-your-customized-html-report-in-pytest-9c6b521b7e99
+
+<br>
+
+- Link(s) de referência para criação e configuração dos testes
+
+https://dev.to/m4rri4nne/automating-your-api-tests-using-python-and-pytest-23cc
+https://semaphoreci.com/community/tutorials/testing-python-applications-with-pytest
+https://testdriven.io/blog/flask-pytest/ 
+https://pytest-selenium.readthedocs.io/en/latest/user_guide.html#quick-start
+
+
 ## Definições:
 
 ### O que é o _`Python`_  e o _`Pytest Framework`_ ?
@@ -116,24 +203,3 @@ pip install -r requirements.txt
 `Pytest` é um framework de testes de software para Python que facilita a escrita, execução e organização de testes unitários e de integração. Ele é conhecido por sua simplicidade, flexibilidade e robustez.
 
 
-
-
-
-
-
-
-
-
-
-# report
-pytest --html=./reports/report.html
-
-# report customized
-https://plainenglish.io/blog/create-your-customized-html-report-in-pytest-9c6b521b7e99
-
-
-# links
-https://dev.to/m4rri4nne/automating-your-api-tests-using-python-and-pytest-23cc
-https://semaphoreci.com/community/tutorials/testing-python-applications-with-pytest
-https://testdriven.io/blog/flask-pytest/ 
-https://pytest-selenium.readthedocs.io/en/latest/user_guide.html#quick-start
