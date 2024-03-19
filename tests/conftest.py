@@ -1,16 +1,43 @@
 import pytest
 import time
 
+from selenium import webdriver  
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager  
+  
 
+## Setup Chrome Driver 
+@pytest.fixture()  
+def chrome_browser():
+
+    chrome_options = Options()
+    chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument("--ignore-certificate-errors")
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+    driver = webdriver.Chrome(options=chrome_options)  
+  
+    # Use this line instead of the prev if you wish to download the ChromeDriver binary on the fly  
+    # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))  
+      
+    driver.implicitly_wait(10)  
+    # Yield the WebDriver instance  
+    yield driver  
+    # Close the WebDriver instance  
+    driver.quit()
+
+
+## Parameters from command line
+def pytest_addoption(parser):
+    parser.addoption("--name", action="store", default="default name")
+
+## Report Customization - Title
 def pytest_html_report_title(report):
     ''' modifying the title of html report'''
     report.title = "NASA APIs - Asteroids."
 
-
-def pytest_addoption(parser):
-    parser.addoption("--name", action="store", default="default name")
-
-
+## Report Customization - html - Prefix, Summary, Oostfix
 def pytest_html_results_summary(prefix, summary, postfix):
     prefix.extend([r"""<button onclick="myFunction()">Click Object-Prefix</button>
 
@@ -45,6 +72,8 @@ def pytest_html_results_summary(prefix, summary, postfix):
     </script>
     """])
 
+
+## Report Data Summary
 def pytest_terminal_summary(terminalreporter, exitstatus, config):
 
     resume = {
@@ -59,11 +88,6 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
             resume[key] = len(terminalreporter.stats[key])
             # print("Status:", key, '->', len(terminalreporter.stats[key]))
 
-    # print('passed amount:', len(terminalreporter.stats['passed']))
-    # print('failed amount:', len(terminalreporter.stats['failed']))
-    # print('xfailed amount:', len(terminalreporter.stats['xfailed']))
-    # print('skipped amount:', len(terminalreporter.stats['skipped']))
-
     # print('terminalreporter:',terminalreporter.stats)
             
     print('Status:', resume)
@@ -71,10 +95,4 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     duration = time.time() - terminalreporter._sessionstarttime
     print('duration:', duration, 'seconds')
 
-# def pytest_sessionfinish(session, exitstatus):
-#     terminalreporter = session.config.pluginmanager.get_plugin('terminalreporter')
-#     print('sessionfinish - passed amount:', len(terminalreporter.stats['passed']))
-#     print('sessionfinish - failed amount:', len(terminalreporter.stats['failed']))
-#     print('sessionfinish - xfailed amount:', len(terminalreporter.stats['xfailed']))
-#     print('sessionfinish - skipped amount:', len(terminalreporter.stats['skipped']))
 

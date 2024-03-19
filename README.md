@@ -138,7 +138,7 @@ https://dev.to/m4rri4nne/automating-your-api-tests-using-python-and-pytest-23cc
 https://semaphoreci.com/community/tutorials/testing-python-applications-with-pytest
 https://testdriven.io/blog/flask-pytest/ 
 https://pytest-selenium.readthedocs.io/en/latest/user_guide.html#quick-start
-
+https://pytest-with-eric.com/automation/pytest-selenium/
 
 
 <br>
